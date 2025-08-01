@@ -1,0 +1,4 @@
+docker network create [network name]
+docker network inspect [network name]
+docker network connect [network name] [container name]
+docker run --network [network name] [image]

@@ -1,0 +1,14 @@
+CMD:
+1) $ docker build -t cmd_im -f Dockerfile.cmd .
+2) $ docker run --rm cmd_im
+3) $ docker run --rm cmd_im echo "Hello from CLI"
+
+ENTRYPOINT:
+1) $ docker build -t entryp_im -f Dockerfile.entrypoint .
+2) $ docker run --rm entryp_im
+3) $ docker run --rm --entrypoint "echo" entryp_im "Hello from CLI"
+
+ENTRYPOINT + CMD:
+1) $ docker build -t encmd_im -f Dockerfile .
+2) $ docker run --rm encmd_im
+3) $ docker run --rm encmd_im "CUSTOM MESSAGE"
