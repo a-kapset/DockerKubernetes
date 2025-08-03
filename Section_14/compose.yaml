@@ -1,0 +1,3 @@
+include:
+  - path: notebooks-be/compose.yaml
+  - path: notes-be/compose.yaml

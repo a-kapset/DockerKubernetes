@@ -1,0 +1,46 @@
+name: kv-app
+
+services:
+  db:
+    image: mongodb/mongodb-community-server:7.0-ubuntu2204
+    ports:
+      - 27017:27017
+    env_file:
+      - .env.db
+    volumes:
+      - type: bind
+        source: ./db-config/mongo-init.js
+        target: /docker-entrypoint-initdb.d/mongo-init.js
+        read_only: true
+      - type: volume
+        source: mongodb-data
+        target: /data/db
+    networks:
+      - app-net
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    env_file:
+      - .env.db
+    environment:
+      - MONGODB_HOST=db
+      - PORT=3000
+    depends_on:
+      - db
+    networks:
+      - app-net
+    develop:
+      watch:
+        - action: sync
+          path: ./backend/src
+          target: /app/src
+
+volumes:
+  mongodb-data:
+
+networks:
+  app-net:

@@ -8,9 +8,6 @@ source setup.sh # run setup script
 MONGODB_IMAGE="mongodb/mongodb-community-server"
 MONGODB_TAG="7.0-ubuntu2204"
 
-ROOT_USER="root-user"
-ROOT_PASSWORD="root-passowrd"
-
 LOCALHOST_PORT=27017
 CONTAINER_PORT=27017
 
